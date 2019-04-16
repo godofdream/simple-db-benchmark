@@ -1,0 +1,7 @@
+version: '3'
+services:
+  db:
+    image: scylladb/scylla
+    restart: always
+    network_mode: host
+    command:  --listen-address 127.0.0.1

@@ -6,8 +6,10 @@ import "github.com/jmoiron/sqlx"
 import "log"
 
 func main() {
-	db := sqlx.MustConnect(`postgres`, `user=test1 dbname=test1 sslmode=disable`)
-	var err error
+	db,err := sqlx.Connect(`postgres`, `postgres://test1:postgres@localhost/test1?sslmode=disable`)
+        if err != nil {
+                log.Fatal(err)
+        }
 	fmt.Println(`test1: postgresql`)
 	_, err = db.Exec(`CREATE TABLE test1 (id BIGSERIAL PRIMARY KEY, k TEXT UNIQUE, v TEXT)`)
 	if err != nil {
